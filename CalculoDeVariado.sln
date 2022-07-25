@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculoDeVariado", "CalculoDeVariado\CalculoDeVariado.csproj", "{B2FB6AC1-46DA-4DDD-A233-7394670CDC3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2FB6AC1-46DA-4DDD-A233-7394670CDC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2FB6AC1-46DA-4DDD-A233-7394670CDC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2FB6AC1-46DA-4DDD-A233-7394670CDC3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2FB6AC1-46DA-4DDD-A233-7394670CDC3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {389C9D28-6F40-44D6-BBB9-EC043D98435C}
+	EndGlobalSection
+EndGlobal
