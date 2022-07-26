@@ -69,7 +69,6 @@
             this.lbResultado.Name = "lbResultado";
             this.lbResultado.Size = new System.Drawing.Size(273, 308);
             this.lbResultado.TabIndex = 1;
-            this.lbResultado.SelectedIndexChanged += new System.EventHandler(this.lbResultado_SelectedIndexChanged);
             // 
             // txtMaiorCota
             // 
@@ -78,7 +77,6 @@
             this.txtMaiorCota.Name = "txtMaiorCota";
             this.txtMaiorCota.Size = new System.Drawing.Size(232, 50);
             this.txtMaiorCota.TabIndex = 2;
-            this.txtMaiorCota.TextChanged += new System.EventHandler(this.txtMaiorCota_TextChanged);
             // 
             // txtMenorCota
             // 

@@ -79,8 +79,10 @@ namespace CalculoDeVariado
         }
         private void btnCalc_Click(object sender, EventArgs e)
         {
+            //Limpando os itens anteriores
             lbResultado.Items.Clear();
 
+            // Verificando se o TextBox está vazio
             if (txtMaiorCota.Text == "")
             {
                 MessageBox.Show("DIGITE A MAIOR COTA");
@@ -107,26 +109,22 @@ namespace CalculoDeVariado
             nvar = float.Parse(txtQtdVariac.Text);
 
             variado = (maior - menor) / (nvar - 1);
-            Math.Round(variado, 1);
+            variado = (float)Math.Round(variado, 0, MidpointRounding.AwayFromZero);
             MessageBox.Show(variado.ToString());
 
             for (ferro = maior; ferro >= menor;)
             {
-                lbResultado.Items.Add(n.ToString() + "º -" + ferro.ToString());
-                ferro -= variado;
-                n++;
+                while (n <= nvar)
+                {
+                    lbResultado.Items.Add(n.ToString() + "º -" + ferro.ToString());
+                    ferro -= variado;
+                    n++;
+                }
+                
             }
 
         }
 
-        private void txtMaiorCota_TextChanged(object sender, EventArgs e)
-        {
-     
-        }
-
-        private void lbResultado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
