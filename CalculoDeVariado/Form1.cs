@@ -12,19 +12,120 @@ namespace CalculoDeVariado
 {
     public partial class Form1 : Form
     {
+        public static bool txtBoxMaiorCotaAtivo = true;
+        public static bool txtBoxMenorCotaAtivo = false;
+        public static bool txtBoxQtdVariacAtivo = false;
         public Form1()
         {
             InitializeComponent();
+
+            txtMaiorCota.LostFocus += new EventHandler(TextBox_LostFocus);
+            txtMenorCota.LostFocus += new EventHandler(TextBox_LostFocus);
+            txtQtdVariac.LostFocus += new EventHandler(TextBox_LostFocus);
+            btn1.Click += new EventHandler(btnClick);
+            btn2.Click += new EventHandler(btnClick);
+            btn3.Click += new EventHandler(btnClick);
+            btn4.Click += new EventHandler(btnClick);
+            btn5.Click += new EventHandler(btnClick);
+            btn6.Click += new EventHandler(btnClick);
+            btn7.Click += new EventHandler(btnClick);
+            btn8.Click += new EventHandler(btnClick);
+            btn9.Click += new EventHandler(btnClick);
+            btn0.Click += new EventHandler(btnClick);
         }
 
-        private void n1_Click(object sender, EventArgs e)
+        private void btnClick(object sender, EventArgs e)
         {
+            string number = (sender as Button).Text;
+            if (txtBoxMaiorCotaAtivo)
+            {
+
+                txtMaiorCota.Text += number;
+               
+            }
+            else if(txtBoxMenorCotaAtivo)
+            {
+
+                txtMenorCota.Text += number;
+
+            } else
+            {
+
+                txtQtdVariac.Text += number;
+            }
+        }
+        private void TextBox_LostFocus(object sender, EventArgs e)
+        {
+            if ((sender as TextBox).Name == "txtMaiorCota")
+            {
+                txtBoxMaiorCotaAtivo = true;
+
+                txtBoxMenorCotaAtivo = false;
+                txtBoxQtdVariacAtivo = false;
+            }
+            else if ((sender as TextBox).Name == "txtMenorCota")
+            {
+                txtBoxMenorCotaAtivo = true;
+
+                txtBoxMaiorCotaAtivo = false;
+                txtBoxQtdVariacAtivo = false;
+
+            } else
+            {
+                txtBoxMenorCotaAtivo = false;
+                txtBoxMaiorCotaAtivo = false;
+                txtBoxQtdVariacAtivo = true;
+            }
+        }
+        private void btnCalc_Click(object sender, EventArgs e)
+        {
+            lbResultado.Items.Clear();
+
+            if (txtMaiorCota.Text == "")
+            {
+                MessageBox.Show("DIGITE A MAIOR COTA");
+                txtMaiorCota.Focus();
+                return;
+            }else if (txtMenorCota.Text == "")
+            {
+                MessageBox.Show("DIGITE A MENOR COTA");
+                txtMenorCota.Focus();
+                return;
+            }else if (txtQtdVariac.Text == "")
+            {
+                MessageBox.Show("DIGITE A QUANTIDADE DE VARIAÇÕES");
+                txtQtdVariac.Focus();
+                return;
+            }
+
+
+
+            float variado, maior, menor, nvar, ferro, n = 1;
+
+            maior = float.Parse(txtMaiorCota.Text);
+            menor = float.Parse(txtMenorCota.Text);
+            nvar = float.Parse(txtQtdVariac.Text);
+
+            variado = (maior - menor) / (nvar - 1);
+            Math.Round(variado, 1);
+            MessageBox.Show(variado.ToString());
+
+            for (ferro = maior; ferro >= menor;)
+            {
+                lbResultado.Items.Add(n.ToString() + "º -" + ferro.ToString());
+                ferro -= variado;
+                n++;
+            }
 
         }
 
-        private void lblQtdVariac_Click(object sender, EventArgs e)
+        private void txtMaiorCota_TextChanged(object sender, EventArgs e)
         {
+     
+        }
 
+        private void lbResultado_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

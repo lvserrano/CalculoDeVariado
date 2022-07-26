@@ -69,6 +69,7 @@
             this.lbResultado.Name = "lbResultado";
             this.lbResultado.Size = new System.Drawing.Size(273, 308);
             this.lbResultado.TabIndex = 1;
+            this.lbResultado.SelectedIndexChanged += new System.EventHandler(this.lbResultado_SelectedIndexChanged);
             // 
             // txtMaiorCota
             // 
@@ -77,6 +78,7 @@
             this.txtMaiorCota.Name = "txtMaiorCota";
             this.txtMaiorCota.Size = new System.Drawing.Size(232, 50);
             this.txtMaiorCota.TabIndex = 2;
+            this.txtMaiorCota.TextChanged += new System.EventHandler(this.txtMaiorCota_TextChanged);
             // 
             // txtMenorCota
             // 
@@ -113,7 +115,6 @@
             this.lblQtdVariac.Size = new System.Drawing.Size(108, 24);
             this.lblQtdVariac.TabIndex = 5;
             this.lblQtdVariac.Text = "Variações";
-            this.lblQtdVariac.Click += new System.EventHandler(this.lblQtdVariac_Click);
             // 
             // btn1
             // 
@@ -124,7 +125,6 @@
             this.btn1.TabIndex = 7;
             this.btn1.Text = "1";
             this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.n1_Click);
             // 
             // btn2
             // 
@@ -245,6 +245,7 @@
             this.btnCalc.TabIndex = 19;
             this.btnCalc.Text = "CALCULAR";
             this.btnCalc.UseVisualStyleBackColor = true;
+            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
             // 
             // btnPrint
             // 
@@ -283,7 +284,7 @@
             this.Controls.Add(this.lbResultado);
             this.Controls.Add(this.lblMaiorCota);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Calculadora de Variado CD Gerdau";
             this.ResumeLayout(false);
             this.PerformLayout();
 
