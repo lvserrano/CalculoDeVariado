@@ -109,14 +109,13 @@ namespace CalculoDeVariado
             nvar = float.Parse(txtQtdVariac.Text);
 
             variado = (maior - menor) / (nvar - 1);
-            variado = (float)Math.Round(variado, 0, MidpointRounding.AwayFromZero);
-            MessageBox.Show(variado.ToString());
+            MessageBox.Show(variado.ToString("000"));
 
             for (ferro = maior; ferro >= menor;)
             {
                 while (n <= nvar)
                 {
-                    lbResultado.Items.Add(n.ToString() + "º -" + ferro.ToString());
+                    lbResultado.Items.Add(n.ToString() + "º -" + ferro.ToString("000"));
                     ferro -= variado;
                     n++;
                 }
