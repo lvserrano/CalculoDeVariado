@@ -127,5 +127,26 @@ namespace CalculoDeVariado
         private void lbResultado_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (txtBoxMaiorCotaAtivo)
+            {
+
+                txtMaiorCota.Clear();
+
+            }
+            else if (txtBoxMenorCotaAtivo)
+            {
+
+                txtMenorCota.Clear();
+
+            }
+            else
+            {
+
+                txtQtdVariac.Clear();
+            }
+        }
     }
 }
