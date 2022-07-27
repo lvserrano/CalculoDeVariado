@@ -81,9 +81,10 @@ namespace CalculoDeVariado
         {
             //Limpando os itens anteriores
             lbResultado.Items.Clear();
-
-            // Verificando se o TextBox está vazio
-            if (txtMaiorCota.Text == "")
+            try
+            {
+                // Verificando se o TextBox está vazio
+                if (txtMaiorCota.Text == "")
             {
                 MessageBox.Show("DIGITE A MAIOR COTA");
                 txtMaiorCota.Focus();
@@ -104,16 +105,12 @@ namespace CalculoDeVariado
 
             float variado, maior = 0, menor = 0, nvar = 0, ferro, n = 1;
 
-            try
-            {
+            
                 maior = float.Parse(txtMaiorCota.Text);
                 menor = float.Parse(txtMenorCota.Text);
                 nvar = float.Parse(txtQtdVariac.Text);
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Ocorreu um erro, digite novamente utilizando um número válido!, erro :" + erro);
-            }
+           
+            
 
             variado = (maior - menor) / (nvar - 1);
             MessageBox.Show(variado.ToString("000"));
@@ -127,6 +124,12 @@ namespace CalculoDeVariado
                     n++;
                 }
                 
+            }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Ocorreu um erro, digite novamente utilizando um número válido!, erro :" + erro.Message);
+                Application.ExitThread();
             }
 
         }
