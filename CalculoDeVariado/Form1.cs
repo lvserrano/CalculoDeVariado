@@ -102,11 +102,18 @@ namespace CalculoDeVariado
 
 
 
-            float variado, maior, menor, nvar, ferro, n = 1;
+            float variado, maior = 0, menor = 0, nvar = 0, ferro, n = 1;
 
-            maior = float.Parse(txtMaiorCota.Text);
-            menor = float.Parse(txtMenorCota.Text);
-            nvar = float.Parse(txtQtdVariac.Text);
+            try
+            {
+                maior = float.Parse(txtMaiorCota.Text);
+                menor = float.Parse(txtMenorCota.Text);
+                nvar = float.Parse(txtQtdVariac.Text);
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Ocorreu um erro, digite novamente utilizando um número válido!, erro :" + erro);
+            }
 
             variado = (maior - menor) / (nvar - 1);
             MessageBox.Show(variado.ToString("000"));
