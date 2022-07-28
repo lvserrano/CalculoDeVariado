@@ -49,6 +49,8 @@
             this.btnDel = new System.Windows.Forms.Button();
             this.btnCalc = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.SuspendLayout();
             // 
             // lblMaiorCota
@@ -255,6 +257,16 @@
             this.btnPrint.TabIndex = 20;
             this.btnPrint.Text = "IMPRIMIR";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.Document = this.printDocument1;
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.print);
             // 
             // Form1
             // 
@@ -283,7 +295,7 @@
             this.Controls.Add(this.lbResultado);
             this.Controls.Add(this.lblMaiorCota);
             this.Name = "Form1";
-            this.Text = "Calculadora de Variado CD Gerdau";
+            this.Text = "Calculadora de Variado";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,6 +324,8 @@
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnCalc;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }
 

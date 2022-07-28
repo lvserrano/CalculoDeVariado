@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace CalculoDeVariado
 {
@@ -33,7 +34,7 @@ namespace CalculoDeVariado
             btn9.Click += new EventHandler(btnClick);
             btn0.Click += new EventHandler(btnClick);
         }
-
+        
         private void btnClick(object sender, EventArgs e)
         {
             string number = (sender as Button).Text;
@@ -160,6 +161,40 @@ namespace CalculoDeVariado
 
                 txtQtdVariac.Clear();
             }
+        }
+
+        private PrintDocument document = new PrintDocument();
+        private void print(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.PageUnit = GraphicsUnit.Millimeter;
+            int leading = 5;
+            int leftMargin = 40;
+            int topMargin = 10;
+
+            // a few simple formatting options..
+            StringFormat FmtRight = new StringFormat() { Alignment = StringAlignment.Far };
+            StringFormat FmtLeft = new StringFormat() { Alignment = StringAlignment.Near };
+            StringFormat FmtCenter = new StringFormat() { Alignment = StringAlignment.Near };
+
+            StringFormat fmt = FmtRight;
+
+            using (Font font = new Font("Roboto", 20f))
+            {
+                SizeF sz = e.Graphics.MeasureString("_|", Font);
+                float h = sz.Height + leading;
+
+                for (int i = 0; i < lbResultado.Items.Count; i++)
+                    e.Graphics.DrawString(lbResultado.Items[i].ToString(), font, Brushes.Black,
+                                          leftMargin, topMargin + h * i, fmt);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintPreviewDialog ppd = new PrintPreviewDialog();
+            ppd.Document = document;
+            document.PrintPage += print;
+            ppd.ShowDialog();
         }
     }
 }
