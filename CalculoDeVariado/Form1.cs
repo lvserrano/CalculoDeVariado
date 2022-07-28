@@ -109,11 +109,17 @@ namespace CalculoDeVariado
                 maior = float.Parse(txtMaiorCota.Text);
                 menor = float.Parse(txtMenorCota.Text);
                 nvar = float.Parse(txtQtdVariac.Text);
-           
-            
+
+           // verificar se digitou na ordem certa as cotas;
+            if (maior < menor)
+                {
+                    MessageBox.Show("A MAIOR cota está MENOR que a MENOR cota, o cálculo não poderá ser efetuado!", "AVISO DE ERRO!");
+                    txtMaiorCota.Focus();
+                    return;
+                }
 
             variado = (maior - menor) / (nvar - 1);
-            MessageBox.Show(variado.ToString("000"));
+            MessageBox.Show(variado.ToString("000"), "VALOR DO VARIADO");
 
             for (ferro = maior; ferro >= menor;)
             {
