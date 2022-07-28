@@ -128,8 +128,8 @@ namespace CalculoDeVariado
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Ocorreu um erro, digite novamente utilizando um número válido!, erro :" + erro.Message);
-                Application.ExitThread();
+                MessageBox.Show(erro.Message, "AVISO DE ERRO");
+                //Application.ExitThread();
             }
 
         }
