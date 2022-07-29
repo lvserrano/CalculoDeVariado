@@ -201,6 +201,19 @@ namespace CalculoDeVariado
                     CreateNoWindow = true
                 });
             }
+            // adição de imagem
+            var caminhoImagem = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img\\gerdau-logo.png");
+            if (File.Exists(caminhoImagem))
+            {
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(caminhoImagem);
+
+                //definir razao e configurações da imagem
+                float razaoAlturaLargura = logo.Width / logo.Height;
+                float alturaLogo = 32;
+                float larguraLogo = alturaLogo * razaoAlturaLargura;
+                logo.ScaleToFit(larguraLogo, alturaLogo);
+
+            }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
