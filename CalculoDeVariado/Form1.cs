@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+// System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Diagnostics;
 
 namespace CalculoDeVariado
 {
@@ -164,37 +168,44 @@ namespace CalculoDeVariado
         }
 
         private PrintDocument document = new PrintDocument();
-        private void print(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void print()
         {
-            e.Graphics.PageUnit = GraphicsUnit.Millimeter;
-            int leading = 5;
-            int leftMargin = 40;
-            int topMargin = 10;
+            //configuração do documento PDF
+            var pxPorMm = 72 / 25.2F;
+            var pdf = new Document(PageSize.A4, 15 * pxPorMm, 15 * pxPorMm, 15 * pxPorMm, 15 * pxPorMm);
+            var nomeArquivo = $"{DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss")}.pdf";
+            var arquivo = new FileStream(nomeArquivo, FileMode.Create);
+            var writer = PdfWriter.GetInstance(pdf, arquivo);
+            pdf.Open();
 
-            // a few simple formatting options..
-            StringFormat FmtRight = new StringFormat() { Alignment = StringAlignment.Far };
-            StringFormat FmtLeft = new StringFormat() { Alignment = StringAlignment.Near };
-            StringFormat FmtCenter = new StringFormat() { Alignment = StringAlignment.Near };
+            var fonteBase = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
 
-            StringFormat fmt = FmtRight;
+            //adição do título
+            var fonteParagrafo = new iTextSharp.text.Font(fonteBase, 32, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
-            using (Font font = new Font("Roboto", 20f))
+            var titulo = new Paragraph("Cálculo de variado\n\n", fonteParagrafo);
+            titulo.Alignment = Element.ALIGN_LEFT;
+            pdf.Add(titulo);
+
+            pdf.Close();
+            arquivo.Close();
+
+            // abre o PDF no visualizador padrao
+            var caminhoPDF = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nomeArquivo);
+            if (File.Exists(caminhoPDF))
             {
-                SizeF sz = e.Graphics.MeasureString("_|", Font);
-                float h = sz.Height + leading;
-
-                for (int i = 0; i < lbResultado.Items.Count; i++)
-                    e.Graphics.DrawString(lbResultado.Items[i].ToString(), font, Brushes.Black,
-                                          leftMargin, topMargin + h * i, fmt);
+                Process.Start(new ProcessStartInfo()
+                {
+                    Arguments = $"/c start {caminhoPDF}",
+                    FileName = "cmd.exe",
+                    CreateNoWindow = true
+                });
             }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            PrintPreviewDialog ppd = new PrintPreviewDialog();
-            ppd.Document = document;
-            document.PrintPage += print;
-            ppd.ShowDialog();
+            print();
         }
     }
 }
