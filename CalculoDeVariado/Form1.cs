@@ -15,6 +15,7 @@ using System.Diagnostics;
 
 namespace CalculoDeVariado
 {
+
     public partial class Form1 : Form
     {
         public static bool txtBoxMaiorCotaAtivo = true;
@@ -182,6 +183,7 @@ namespace CalculoDeVariado
 
             //adição do título
             var fonteParagrafo = new iTextSharp.text.Font(fonteBase, 32, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            var fonteItem = new iTextSharp.text.Font(fonteBase, 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
             var titulo = new Paragraph("Cálculo de variado\n\n", fonteParagrafo);
             titulo.Alignment = Element.ALIGN_LEFT;
@@ -195,19 +197,28 @@ namespace CalculoDeVariado
 
                 //definir razao e configurações da imagem
                 float razaoAlturaLargura = logo.Width / logo.Height;
-                float alturaLogo = 80;
+                float alturaLogo = 60;
                 float larguraLogo = alturaLogo * razaoAlturaLargura;
                 logo.ScaleToFit(larguraLogo, alturaLogo);
 
                 var margemEsquerda = pdf.PageSize.Width - pdf.RightMargin - larguraLogo;
-                var margemTop = pdf.PageSize.Height - pdf.TopMargin - 54;
+                var margemTop = pdf.PageSize.Height - pdf.TopMargin - 60;
                 logo.SetAbsolutePosition(margemEsquerda, margemTop);
                 writer.DirectContent.AddImage(logo, false);
 
 
             }
+            
+            // adição dos itens no PDF
 
-            pdf.Close();
+            for (int i = 0; i < lbResultado.Items.Count; i++)
+            {
+                var valores = lbResultado.Items[i].ToString();
+                var itens = new Paragraph(valores, fonteItem);
+                pdf.Add(itens);
+            }
+
+                pdf.Close();
             arquivo.Close();
 
             // abre o PDF no visualizador padrao
@@ -222,6 +233,11 @@ namespace CalculoDeVariado
                 });
             }
             
+        }
+
+        private object PdfPCell(Phrase phrase)
+        {
+            throw new NotImplementedException();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
