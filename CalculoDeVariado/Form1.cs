@@ -183,7 +183,7 @@ namespace CalculoDeVariado
 
             //adição do título
             var fonteParagrafo = new iTextSharp.text.Font(fonteBase, 32, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-            var fonteItem = new iTextSharp.text.Font(fonteBase, 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            var fonteItem = new iTextSharp.text.Font(fonteBase, 32, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
 
             var titulo = new Paragraph("Cálculo de variado\n\n", fonteParagrafo);
             titulo.Alignment = Element.ALIGN_LEFT;
@@ -215,6 +215,7 @@ namespace CalculoDeVariado
             {
                 var valores = lbResultado.Items[i].ToString();
                 var itens = new Paragraph(valores, fonteItem);
+
                 pdf.Add(itens);
             }
 
