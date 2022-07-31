@@ -188,14 +188,14 @@ namespace CalculoDeVariado
             pdf.Add(titulo);
 
             // adição de imagem
-            var caminhoImagem = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img\\gerdau-logo.png");
+            var caminhoImagem = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logo.png");
             if (File.Exists(caminhoImagem))
             {
                 iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(caminhoImagem);
 
                 //definir razao e configurações da imagem
                 float razaoAlturaLargura = logo.Width / logo.Height;
-                float alturaLogo = 32;
+                float alturaLogo = 80;
                 float larguraLogo = alturaLogo * razaoAlturaLargura;
                 logo.ScaleToFit(larguraLogo, alturaLogo);
 
